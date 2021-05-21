@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html data-theme="light">
+
+<head>
+{% load static %}
+    
+    
+    <link rel="shortcut icon" type="image/x-icon"
+        href="/packs/media/images/logo/favicon-5c923122dec9213975049aa98a6781a4.svg" />
+    <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" media="screen" href="{% static 'stylesheets.css' %}" />
+    <script src="/packs/js/application-629e22b66833e36bd536.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.css" rel="stylesheet">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.js"></script>
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="collapse navbar-collapse mr-5" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto d-flex justify-content-end w-100">
+
+            <li class="nav-item">
+                <div class="hero__actions">
+                    <a class="button button--primary mt-2" style="text-decoration: none;" data-turbolinks="false" onclick="connect_wallet()">Connect Wallet</a>
+                </div>
+            </li>
+          </ul>
+        </div>
+    </nav>
+    <div id="app-content">
+
+        </div>
+        <div class="page-wrapper pb-5">
+            <div class="container">
+                <h2 class="h2 text--bold mb-4">Featured Pools</h2>
+                <div class="grid-3">
+                {% for pool in Featured_pool_list %}
+                    <a class="featured-card" href="{% url 'Pool_Details' pool.id %}" style="text-decoration: none
+                    ;">
+                        <div class="featured-card__head">
+                            <div class="featured-card__img">
+                                <img style="max-width: 54px; max-height: 54px;"
+                                    src="https://pbs.twimg.com/profile_images/1387085852380106769/LtET0reH_400x400.jpg" />
+                            </div>
+                        </div>
+                        <div class="featured-card__coin">
+                            <h2 class="featured-card__coin--name mb-3">
+                                {{pool.pool_title}}
+                            </h2>
+                            <p class="featured-card__title">Total Raise</p>
+                            <h2 class="featured-card__ratio">
+                                {{pool.swap_amount}}
+                            </h2>
+                        </div>
+                        <div class="featured-card__footer">
+                            <div>
+                                <p class="featured-card__title--small">Min Allocation</p>
+                                <h3 class="featured-card__info" data-target="pool-partial.participants">
+                                    0
+                                </h3>
+                            </div>
+                            <div>
+                                <p class="featured-card__title--small">Max Allocation</p>
+                                <h3 class="featured-card__info" data-target="pool-partial.minAllocation">
+                                    TBA
+                                </h3>
+                            </div>
+                            <div>
+                                <p class="featured-card__title--small">Access</p>
+                                <h3 class="featured-card__info" data-target="pool-partial.accessType">
+                                    POLS
+                                </h3>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="page-wrapper pb-5">
+            <div class="container">
+                <h2 class="h2 text--bold mb-4">Upcoming Pools</h2>
+                <div class="grid-3">
+                    {% for pool in Upcoming_pool_list %}
+                    <a class="featured-card" href="#" style="text-decoration: none
+                    ;">
+                        <div class="featured-card__head">
+                            <div class="featured-card__img">
+                                <img style="max-width: 54px; max-height: 54px;"
+                                    src="https://pbs.twimg.com/profile_images/1387085852380106769/LtET0reH_400x400.jpg" />
+                            </div>
+                            <div class="featured-card__label">
+                                <div class="label label--primary">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"
+                                        fill="none">
+                                        <circle cx="4" cy="4" r="4" fill="#212121"></circle>
+                                    </svg>
+                                    <span> failed</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="featured-card__coin">
+                            <h2 class="featured-card__coin--name mb-3">
+                                Ethermon
+                            </h2>
+                            <p class="featured-card__title">Total Raise</p>
+                            <h2 class="featured-card__ratio">
+                                $200k
+                            </h2>
+                        </div>
+                        <div class="featured-card__footer">
+                            <div>
+                                <p class="featured-card__title--small">Min Allocation</p>
+                                <h3 class="featured-card__info" data-target="pool-partial.participants">
+                                    0
+                                </h3>
+                            </div>
+                            <div>
+                                <p class="featured-card__title--small">Max Allocation</p>
+                                <h3 class="featured-card__info" data-target="pool-partial.minAllocation">
+                                    TBA
+                                </h3>
+                            </div>
+                            <div>
+                                <p class="featured-card__title--small">Access</p>
+                                <h3 class="featured-card__info" data-target="pool-partial.accessType">
+                                    POLS
+                                </h3>
+                            </div>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+            
+        <div class="container ">
+            <div class="subscribe">
+                <div class="subscribe__content">
+                    <h2>Get Alerts For New Pools</h2>
+                    <h3>Subscribe to get notified about new pools and other relevant events.</h3>
+                    <a   class="button button--secondary" href="#">
+                        Subscribe
+                    </a>
+                </div>
+                <div class="subscribe__illustration"></div>
+            </div>
+        </div>
+    </div>
+    <footer class="footer mt-5">
+        <div class="container">
+            <div class="footer__grid">
+                    <div class="copyright">
+                        © Polkastarter 2021
+                    </div>
+                <div>
+                    <div class="footer__title">Social</div>
+                    <a href="#" class="footer__link"  >Blog</a>
+                    <a href="#" class="footer__link"  >Telegram</a>
+                    <a href="#" class="footer__link"  >Twitter</a>
+                </div>
+                <div>
+                    <div class="footer__title">Company</div>
+                </div>
+                <div>
+                    <div class="footer__title">Help</div>
+                </div>
+                <div>
+                    <div class="footer__title">Developers</div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/web3/1.3.5/web3.min.js" integrity="sha512-S/O+gH5szs/+/dUylm15Jp/JZJsIoWlpSVMwT6yAS4Rh7kazaRUxSzFBwnqE2/jBphcr7xovTQJaopiEZAzi+A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jdenticon@3.1.0/dist/jdenticon.min.js" async
+        integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous">
+    </script>
+      <script type = "text/javascript">
+
+      function connect_wallet(){
+          console.log("test");
+            if (typeof web3 !== 'undefined') {
+                console.log('Web3 Detected! ' + window.ethereum.currentProvider);
+                window.web3 = new Web3(window.ethereum.currentProvider);
+            } else {
+                console.log('No Web3 Detected... using HTTP Provider')
+                window.web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/38c44dc5c0524e5d8003860022744ff8"));
+            }
+            console.log(web3.eth.getAccounts().then(
+  function(value) { console.log(value[0]) },
+  function(error) { console.log(error) }
+));
+
+      }
+
+     </script>
+</body>
+
+</html>
