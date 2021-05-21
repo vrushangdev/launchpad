@@ -29,7 +29,7 @@
 
             <li class="nav-item">
                 <div class="hero__actions">
-                    <a class="button button--primary mt-2" style="text-decoration: none;" data-turbolinks="false" onclick="connect_wallet()">Connect Wallet</a>
+                    <a class="button button--primary mt-2" id="connect_button" style="text-decoration: none;" data-turbolinks="false" onclick="connect_wallet()">Connect Wallet</a>
                 </div>
             </li>
           </ul>
@@ -186,20 +186,36 @@
         integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous">
     </script>
       <script type = "text/javascript">
+      async function getAccount() {
+             const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+             const account = accounts[0];
+            return account;
+            }
 
       function connect_wallet(){
-          console.log("test");
-            if (typeof web3 !== 'undefined') {
-                console.log('Web3 Detected! ' + window.ethereum.currentProvider);
-                window.web3 = new Web3(window.ethereum.currentProvider);
-            } else {
-                console.log('No Web3 Detected... using HTTP Provider')
-                window.web3 = new Web3(new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/38c44dc5c0524e5d8003860022744ff8"));
-            }
-            console.log(web3.eth.getAccounts().then(
-  function(value) { console.log(value[0]) },
-  function(error) { console.log(error) }
-));
+        if (typeof window.ethereum !== 'undefined') {
+        console.log('MetaMask is installed!');
+            getAccount().then
+            (
+            function(value) { 
+                console.log(value);
+                var connect_button = document.getElementById('connect_button');
+                connect_button.innerText = value;
+                // $.ajax({
+                //     type: "POST",
+                //     url: "update_session",
+                //     data: {
+                //     'address': value;
+                //             },
+                //    success: function () {
+                //     alert("sucess")
+                //     }
+                //     });
+                },
+            function(error) { console.log(error) } 
+            );
+
+        } 
 
       }
 

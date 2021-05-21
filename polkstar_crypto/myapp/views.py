@@ -20,3 +20,11 @@ def check_address(request,id):
     if address is not None:
         return JsonResponse({'whitelsited':'FALSE'})
     return JsonResponse({'whitelsited':'TRUE'}) 
+
+def update_session(request):
+    if not request.is_ajax() or not request.method=='POST':
+        return HttpResponseNotAllowed(['POST'])
+
+    request.session['eth_address'] = data;
+    return HttpResponse("{'address_set': {}}".format(data))
+
