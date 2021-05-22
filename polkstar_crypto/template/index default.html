@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html data-theme="light">
 
 <head>
@@ -29,16 +28,7 @@
           <ul class="navbar-nav mr-auto d-flex justify-content-end w-100">
             <li class="nav-item">
                 <div class="hero__actions">
-                    {% if eth_address %}
-                    <a class="button button--primary mt-2" id="connect_button" style="text-decoration: none;" data-turbolinks="false" onclick="disconnect_wallet()">
-                    {{ eth_address }}    
-                    </a>
-
-                    {% else %}
                     <a class="button button--primary mt-2" id="connect_button" style="text-decoration: none;" data-turbolinks="false" onclick="connect_wallet()">Connect Wallet</a>
-                    {% endif %}
-                    
-
                 </div>
             </li>
           </ul>
@@ -49,7 +39,7 @@
         </div>
         <div class="page-wrapper pb-5">
             <div class="container">
-                <h2 class="h2 text--bold mb-4">Exclusive Pools</h2>
+                <h2 class="h2 text--bold mb-4">Featured Pools</h2>
                 <div class="grid-3">
                 {% for pool in Featured_pool_list %}
                     <a class="featured-card" href="{% url 'Pool_Details' pool.id %}" style="text-decoration: none
@@ -95,7 +85,7 @@
             </div>
         </div>
         <div class="page-wrapper pb-5">
- <!--            <div class="container">
+            <div class="container">
                 <h2 class="h2 text--bold mb-4">Upcoming Pools</h2>
                 <div class="grid-3">
                     {% for pool in Upcoming_pool_list %}
@@ -147,7 +137,7 @@
                         </div>
                     </a>
                     {% endfor %}
-                </div> -->
+                </div>
             </div>
         </div>
         
@@ -156,23 +146,36 @@
             <div class="subscribe">
                 <div class="subscribe__content">
                     <h2>Get Alerts For New Pools</h2>
-                    <h3>Join Our Free Telegram Channel For Upcoming Pools.</h3>
-                    <button   class="button button--secondary">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Telegram_2019_Logo.svg" width="30"></img>
-                        <a  href="https://t.me/RevoNetworkapp" style="text-decoration: none; text-decoration-color: white !important;">  Subscribe </a>
-                    </button>
+                    <h3>Subscribe to get notified about new pools and other relevant events.</h3>
+                    <a   class="button button--secondary" href="#">
+                        Subscribe
+                    </a>
                 </div>
                 <div class="subscribe__illustration"></div>
             </div>
         </div>
     </div>
-    <footer class="footer bg-dark mt-5">
+    <footer class="footer mt-5">
         <div class="container">
             <div class="footer__grid">
-                    <div class="copyright text-light">
-                        © Revo Network Launch Pad 2021
+                    <div class="copyright">
+                        © Polkastarter 2021
                     </div>
-
+                <div>
+                    <div class="footer__title">Social</div>
+                    <a href="#" class="footer__link"  >Blog</a>
+                    <a href="#" class="footer__link"  >Telegram</a>
+                    <a href="#" class="footer__link"  >Twitter</a>
+                </div>
+                <div>
+                    <div class="footer__title">Company</div>
+                </div>
+                <div>
+                    <div class="footer__title">Help</div>
+                </div>
+                <div>
+                    <div class="footer__title">Developers</div>
+                </div>
             </div>
         </div>
     </footer>
@@ -197,55 +200,24 @@
                 console.log(value);
                 var connect_button = document.getElementById('connect_button');
                 connect_button.innerText = value;
-                return value
                 },
             function(error) { console.log(error) } 
 
-            ).then(
-                function(value){
-                    console.log(value);
-                    $.ajax({
-                        type: 'POST',
-                        url: "{% url 'update_session' %} ",
-                        data:{
-                            'eth_address':value,
-                        },
-                        success: function(response){
-                            console.log(response);
-                            window.location.href = "http://127.0.0.1:8000/";
-                        },
-                        error: function(error){
-                            console.log(error);
-                        }
-                    })
-                }
             );
-     
+             // $.post({
+             //        type: "POST",
+             //        url: "update_session",
+             //        data: {
+             //        'eth_address':value
+             //                },
+             //       success: function () {
+             //        alert("sucess")
+             //        }
+             //        }); 
+
 
         }
 
-      }
-
-
-      function disconnect_wallet(){
-        var answer = confirm('Are you sure you want to disconnect your wallet?');
-        console.log(answer)
-        if(answer){
-             $.ajax({
-                        type: 'POST',
-                        url: "{% url 'update_session' %} ",
-                        data:{
-                            'eth_address': null,
-                        },
-                        success: function(response){
-                            console.log(response);
-                        },
-                        error: function(error){
-                            console.log(error);
-                        }
-                    })
-             window.location.href = "http://127.0.0.1:8000/";
-        }
       }
 
      </script>
