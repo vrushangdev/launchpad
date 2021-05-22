@@ -19,7 +19,7 @@ from .views import *
 
 urlpatterns = [
     path("",index,name="Index"),
-    path("pool/<int:id>",pool_details,name="Pool_Details"),
+    path("pool/<int:id>/",pool_details,name="Pool_Details"),
     path("check/<str:id>", check_address, name="check" ),
     path("update_session", update_session, name="update")
 ]
