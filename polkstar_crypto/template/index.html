@@ -24,18 +24,21 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg" style="background-color: white;">
         <div class="collapse navbar-collapse mr-5" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto d-flex justify-content-end w-100">
+            <li class="nav-item mr-auto py-2 px-2">
+                <span><img width="auto" src="https://bsc.revonetwork.app/images/egg/logo.svg" width="80"class="desktop-icon" style="height: 40px; width: auto;"></span>
+            </li>
             <li class="nav-item">
                 <div class="hero__actions">
                     {% if eth_address %}
-                    <a class="button button--primary mt-2" id="connect_button" style="text-decoration: none;" data-turbolinks="false" onclick="disconnect_wallet()">
-                    {{ eth_address }}    
+                    <a class="button button--primary mt-2" id="connect_button" style="text-decoration: none;"  style="background-color: red !important;" data-turbolinks="false" onclick="disconnect_wallet()">
+                   Logout |  {{ eth_address | truncatechars:5 }}    
                     </a>
 
                     {% else %}
-                    <a class="button button--primary mt-2" id="connect_button" style="text-decoration: none;" data-turbolinks="false" onclick="connect_wallet()">Connect Wallet</a>
+                    <a class="button button--primary mt-2" id="connect_button" style="text-decoration: none;" data-turbolinks="false back"  onclick="connect_wallet()">Connect Wallet</a>
                     {% endif %}
                     
 
@@ -49,7 +52,7 @@
         </div>
         <div class="page-wrapper pb-5">
             <div class="container">
-                <h2 class="h2 text--bold mb-4">Exclusive Pools</h2>
+                <h2 class="h2 text--bold mb-4">Revo Exclusive Pools</h2>
                 <div class="grid-3">
                 {% for pool in Featured_pool_list %}
                     <a class="featured-card" href="{% url 'Pool_Details' pool.id %}" style="text-decoration: none
@@ -73,21 +76,34 @@
                             <div>
                                 <p class="featured-card__title--small">Min Allocation</p>
                                 <h3 class="featured-card__info" data-target="pool-partial.participants">
-                                    0
+                                    {{ pool.pool_min_amount }}
                                 </h3>
                             </div>
                             <div>
                                 <p class="featured-card__title--small">Max Allocation</p>
                                 <h3 class="featured-card__info" data-target="pool-partial.minAllocation">
-                                    TBA
+                                    {{ pool.pool_max_amount }}
                                 </h3>
                             </div>
-                            <div>
+
                                 <p class="featured-card__title--small">Access</p>
                                 <h3 class="featured-card__info" data-target="pool-partial.accessType">
-                                    POLS
+                                    {{ pool.pool_coin_name }}
                                 </h3>
+
                             </div>
+                        <div class="pool-hero__progress">
+                           <div class="progress">
+                                <div class="progress-bar featured-card__step-1 d-none"
+                                    data-target="pool-partial.minSwapLevelProgressBar" role="progressbar"
+                                    style="width: 0%" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar featured-card__step-2" role="progressbar" style="width:{{ pool.pool_progress  }}%"
+                                    aria-valuemin="0" aria-valuemax="100" data-target="pool-partial.progressBar"></div>
+<!--                             </div>
+ -->                           
+                            </div>
+                            </div>
+                            <div>
                         </div>
                     </a>
                     {% endfor %}
@@ -152,7 +168,7 @@
         </div>
         
             
-        <div class="container ">
+        <div class="container">
             <div class="subscribe">
                 <div class="subscribe__content">
                     <h2>Get Alerts For New Pools</h2>
@@ -182,6 +198,7 @@
         integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous">
     </script>
       <script type = "text/javascript">
+
       async function getAccount() {
              const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
              const account = accounts[0];
@@ -212,7 +229,7 @@
                         },
                         success: function(response){
                             console.log(response);
-                            window.location.href = "http://127.0.0.1:8000/";
+                            window.location.href = "{% url 'Index' %}";
                         },
                         error: function(error){
                             console.log(error);
@@ -244,7 +261,7 @@
                             console.log(error);
                         }
                     })
-             window.location.href = "http://127.0.0.1:8000/";
+             window.location.href = "{% url 'Index' %}";
         }
       }
 

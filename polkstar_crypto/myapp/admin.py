@@ -9,8 +9,8 @@ class PoolAdmin(admin.ModelAdmin):
     list_filter = ('pool_name','pool_tier','pool_status',)
 
 class WhitelistAdmin(admin.ModelAdmin):
-    list_display = ('pool_name', 'eth_adddress')
-    search_fields = ('pool_name', 'eth_adddress')
+    list_display = ('pool_name', 'eth_address')
+    search_fields = ('pool_name', 'eth_address')
     list_per_page = 25
     list_filter = ('pool_name',)
 
