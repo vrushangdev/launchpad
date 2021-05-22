@@ -102,6 +102,10 @@
 <!--                             </div>
  -->                           
                             </div>
+                            <div id="whitelist_status">
+                                
+
+                            </div>
                             </div>
                             <div>
                         </div>
@@ -198,6 +202,31 @@
         integrity="sha384-VngWWnG9GS4jDgsGEUNaoRQtfBGiIKZTiXwm9KpgAeaRn6Y/1tAFiyXqSzqC8Ga/" crossorigin="anonymous">
     </script>
       <script type = "text/javascript">
+// $( document ).ready(function() {
+//     var real_address = '{{ eth_address }}';
+//     check_whitelist(real_address);
+// });
+//     function check_whitelist(eth_address){
+//              $.ajax({
+//                         type: 'POST',
+//                         url: "{% url 'check' eth_address %}".replace("eth_address", eth_address),
+//                         data:{
+//                             'eth_address':eth_address,
+//                         },
+//                         success: function(response){
+//                             console.log(response);
+
+//                             if response == "0" {
+//                                     document.getElementById("whitelist_status").innerText = "Not Whitelisted"
+//                             }
+                            
+//                             // window.location.href = "{% url 'Index' %}";
+//                         },
+//                         error: function(error){
+//                             console.log(error);
+//                         }
+//                     })
+//     }
 
       async function getAccount() {
              const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
@@ -230,6 +259,7 @@
                         success: function(response){
                             console.log(response);
                             window.location.href = "{% url 'Index' %}";
+
                         },
                         error: function(error){
                             console.log(error);
