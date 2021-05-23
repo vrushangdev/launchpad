@@ -33,7 +33,7 @@ DEBUG = True
 # prod_db  =  dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(prod_db)
 
-ALLOWED_HOSTS = ['revopad.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
