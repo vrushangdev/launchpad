@@ -1,1 +1,1 @@
-web: gunicorn polkstar_crypto.wsgi --log-file -
+web: gunicorn polkstar_crypto.wsgi 

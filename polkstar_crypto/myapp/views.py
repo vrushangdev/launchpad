@@ -37,7 +37,6 @@ def pool_details(request,id):
         # request.session['eth_address'] = None
         return render(request,"pinknode.html",{"pool":pool})        
     else:
-        request.session['whitelist_status'] = "Not Whitelisted"
         return redirect("Index")
 
         
@@ -49,7 +48,7 @@ def check_address(request,id):
     if address is not None:
         return HttpResponse("0")
     else:
-        return HttpsResponse("1") 
+        return HttpResponse("1") 
 
 @csrf_exempt
 def update_session(request):

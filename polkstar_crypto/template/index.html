@@ -60,7 +60,7 @@
                         <div class="featured-card__head">
                             <div class="featured-card__img">
                                 <img style="max-width: 54px; max-height: 54px;"
-                                    src="{{ pool.pool_coin_image }}" />
+                                    src="https://pbs.twimg.com/profile_images/1387085852380106769/LtET0reH_400x400.jpg" />
                             </div>
                         </div>
                         <div class="featured-card__coin">
@@ -103,8 +103,7 @@
  -->                           
                             </div>
                             <div id="whitelist_status">
-
-                               <h4 style="color: white !important; padding: 16px; background-color: black; margin: 16px; text-align: center;"> {{ request.session.whitelist_status }} </h4> 
+                                
 
                             </div>
                             </div>
@@ -182,7 +181,7 @@
                         <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Telegram_2019_Logo.svg" width="30"></img>
                         <a  href="https://t.me/RevoNetworkapp" style="text-decoration: none; text-decoration-color: white !important;">  Subscribe </a>
                     </button>
-                </div>h
+                </div>
                 <div class="subscribe__illustration"></div>
             </div>
         </div>
@@ -207,7 +206,27 @@
 //     var real_address = '{{ eth_address }}';
 //     check_whitelist(real_address);
 // });
+//     function check_whitelist(eth_address){
+//              $.ajax({
+//                         type: 'POST',
+//                         url: "{% url 'check' eth_address %}".replace("eth_address", eth_address),
+//                         data:{
+//                             'eth_address':eth_address,
+//                         },
+//                         success: function(response){
+//                             console.log(response);
 
+//                             if response == "0" {
+//                                     document.getElementById("whitelist_status").innerText = "Not Whitelisted"
+//                             }
+                            
+//                             // window.location.href = "{% url 'Index' %}";
+//                         },
+//                         error: function(error){
+//                             console.log(error);
+//                         }
+//                     })
+//     }
 
       async function getAccount() {
              const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
