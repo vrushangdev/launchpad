@@ -45,11 +45,13 @@
                 <div class="pool-hero__content">
                     <div class="pool-hero__info">
                         <div class="image">
-                            <img style="max-width: 54px; max-height: 54px;"
-                                src="https://pbs.twimg.com/profile_images/1387085852380106769/LtET0reH_400x400.jpg" />
+                            <img height="54px" 
+                                src="{{ pool.pool_coin_image }}" />
 
                         </div>
                         <h2 class="name" data-target="pool-partial.name">{{ pool.pool_name }}</h2>
+                        <h3>Contribution Address</h3>
+
                         <span>{{ pool.pool_address }}</span>                            
                         </div>
                     <div class="pool-hero__card">
@@ -126,10 +128,10 @@
                         <div class="title">Decimals</div>
                         <div class="info" data-target="pool-details.tokenDecimals">{{ pool.pool_coin_decimal }}</div>
                     </div>
-                    <div class="table-row">
+<!--                     <div class="table-row">
                         <div class="title">Address</div>
                         <div class="info" data-target="pool-details.tokenContract">{{ pool.pool_address }}</div>
-                    </div>
+                    </div> -->
                     <div class="table-row">
                         <div class="title">Total Supply</div>
                         <div class="info" data-target="pool-details.tokenSupply">{{ pool.pool_coin_total_supply }}</div>

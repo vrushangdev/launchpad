@@ -37,6 +37,7 @@ def pool_details(request,id):
         # request.session['eth_address'] = None
         return render(request,"pinknode.html",{"pool":pool})        
     else:
+        request.session['whitelist_status'] = "Not Whitelisted"
         return redirect("Index")
 
         

@@ -3,7 +3,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 
 # Create your models here.
 POOL_CHOICE = (("Featured","Featured"),("Upcoming","Upcoming"))
-POOL_TIER = (("Tier 1", "Tier 1"), ("Tier 2", "Tier 2"), ("Tier 3", "Tier 3"), ("Bonus Tier", "Bonus Tier"))
+POOL_TIER = (("Tier 1", "Tier 1"), ("Tier 2", "Tier 2"), ("Tier 3", "Tier 3"), ("Tier 4", "Tier 4"))
 class Pool(models.Model):
     pool_name = models.CharField(max_length=100,unique=True)
     pool_access = models.CharField(max_length=100,choices=POOL_CHOICE,default="Upcoming")
@@ -19,6 +19,7 @@ class Pool(models.Model):
     pool_coin_name = models.CharField(max_length=100, unique=False)
     pool_coin_decimal = models.CharField(max_length=100, unique=False)
     pool_coin_total_supply = models.CharField(max_length=100, unique=False)
+    pool_coin_image = models.CharField(max_length=300, unique=False)
     
 
     def __str__(self):
