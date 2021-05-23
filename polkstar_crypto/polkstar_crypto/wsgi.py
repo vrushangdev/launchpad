@@ -15,5 +15,4 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'polkstar_crypto.settings')
 
 application = get_wsgi_application()
 
-
 application = DjangoWhiteNoise(application)
