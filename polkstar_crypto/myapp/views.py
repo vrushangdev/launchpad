@@ -48,7 +48,7 @@ def check_address(request,id):
     if address is not None:
         return HttpResponse("0")
     else:
-        return HttpResponse("1") 
+        return HttpsResponse("1") 
 
 @csrf_exempt
 def update_session(request):
